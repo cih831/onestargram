@@ -1,6 +1,7 @@
 <template>
   <div>
-    여기는앱닷뷰
+    네브바
+    <router-view/>
   </div>
 </template>
 
