@@ -14,6 +14,7 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
     content = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_comments')
 
 
 class Reply(models.Model):
@@ -21,3 +22,4 @@ class Reply(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='replies')
     content = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reply')

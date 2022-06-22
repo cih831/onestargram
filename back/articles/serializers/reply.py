@@ -12,8 +12,9 @@ class ReplySerializer(serializers.ModelSerializer):
             fields = ('pk', 'username', 'profile_img')
 
     user = UserSerializer(read_only=True)
+    like_users = UserSerializer(read_only=True, many=True)
 
     class Meta:
         model = Reply
-        fields = ('pk', 'user', 'content', 'comment', 'created_at')
+        fields = ('__all__')
         read_only_fields = ('comment', )

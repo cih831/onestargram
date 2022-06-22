@@ -28,7 +28,7 @@ def article_list_or_create(request):
     if request.method == 'GET':
         return article_list()
     elif request.method == 'POST':
-        return create_article
+        return create_article()
 
     
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -116,6 +116,20 @@ def comment_update_or_delete(request, article_pk, comment_pk):
 
 
 @api_view(['POST'])
+def like_comment(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    user = request.user
+    if comment.like_users.filter(pk=user.pk).exists():
+        comment.like_users.remove(user)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    else:
+        comment.like_users.add(user)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+
+
+@api_view(['POST'])
 def create_reply(request, comment_pk):
     user = request.user
     comment = get_object_or_404(Comment, pk=comment_pk)
@@ -153,3 +167,17 @@ def reply_update_or_delete(request, comment_pk, reply_pk):
         return update_reply()
     elif request.method == 'DELETE':
         return delete_reply()
+
+
+@api_view(['POST'])
+def like_reply(request, reply_pk):
+    reply = get_object_or_404(Reply, pk=reply_pk)
+    user = request.user
+    if reply.like_users.filter(pk=user.pk).exists():
+        reply.like_users.remove(user)
+        serializer = ReplySerializer(reply)
+        return Response(serializer.data)
+    else:
+        reply.like_users.add(user)
+        serializer = ReplySerializer(reply)
+        return Response(serializer.data)
