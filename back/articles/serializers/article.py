@@ -50,4 +50,3 @@ class ArticleListSerializer(serializers.ModelSerializer):
         model = Article
         fields = ('__all__')
         depth = 1
-        
