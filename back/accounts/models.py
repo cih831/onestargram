@@ -6,3 +6,4 @@ class User(AbstractUser):
     nickname = models.CharField(max_length=10, blank=True)
     introduce = models.CharField(max_length=200)
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
+    profile_img = models.TextField(null=True, default='')

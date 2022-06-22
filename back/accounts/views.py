@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ProfileSerializer
@@ -49,3 +50,16 @@ def follow(request, username):
             serializer = ProfileSerializer(person)
         return JsonResponse(serializer.data)
     return HttpResponse(status=401)
+
+
+@api_view(['POST'])
+def edit_profile_img(request, username):
+    user = User.objects.get(username=username)
+    user.profile_img = request.data['profile_img']
+    user.save()
+
+    data = {
+        'user': 'changed'
+    }
+    
+    return Response(data, status=status.HTTP_200_OK)

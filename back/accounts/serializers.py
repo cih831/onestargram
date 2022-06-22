@@ -14,6 +14,5 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('pk', 'username', 'articles', 'nickname', 'followings', 'followers', 'introduce',)
-        read_only_fields = ('username', 'followings', )
-
+        fields = ('pk', 'username', 'articles', 'nickname', 'followings', 'followers', 'introduce', 'profile_img')
+        depth = 1
