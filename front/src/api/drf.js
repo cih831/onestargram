@@ -12,16 +12,18 @@ export default {
     profile: username => HOST + ACCOUNTS + 'profile/' + `${username}/`,
     follow: username => HOST + ACCOUNTS + 'profile/' + `${username}/` + 'follow/',
     edit: username => HOST + ACCOUNTS + 'profile/' + `${username}/` + 'edit/',
+    editProfileImg: username => HOST + ACCOUNTS + 'profile/' + `${username}/` + 'edit_profile_img/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
   },
 	articles: {
     articles: () => HOST + ARTICLES,
     article: articlePk => HOST + ARTICLES + `${articlePk}/`,
     likeArticle: articlePk => HOST + ARTICLES + `${articlePk}/` + 'like/',
-    comments: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
-    comment: (articlePk, commentPk) =>
-      HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
-    replies: commentPk => HOST + ARTICLES + `${commentPk}` + 'replies/',
-    reply: (commentPk, replyPk) => HOST + ARTICLES + `${commentPk}` + 'replies/' + `${replyPk}`		
+    createComment: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
+    updateDeleteComment: commentPk => HOST + ARTICLES + COMMENTS + `${commentPk}/`,
+    likeComment: commentPk => HOST + ARTICLES + COMMENTS + `${commentPk}/` + 'like/',
+    createReply: commentPk => HOST + ARTICLES + COMMENTS + `${commentPk}/` + 'replies/',
+    updateDeleteReply: (commentPk, replyPk) => HOST + ARTICLES + COMMENTS + `${commentPk}/` + 'replies/' `${replyPk}/`,
+    likeReply: replyPk => HOST + ARTICLES + 'replies/' + `${replyPk}/` + 'like/',
 	}
 }
