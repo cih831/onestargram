@@ -7,12 +7,12 @@
             <img src="@/assets/2.png" alt="" id="image1">
           </div>
           <div id="signup-wrap" class="mt-4">
-            <form @submit.prevent="signup(credentials)">
+            <form @submit.prevent="login(credentials)">
               <div id="input-div">
-                <input type="text" class="form-control" placeholder="전화번호 사용자 이름 또는 이메일">
+                <input type="text" class="form-control" placeholder="전화번호 사용자 이름 또는 이메일" v-model="credentials.username" required>
               </div>
               <div id="input-div">
-                <input type="password" class="form-control" placeholder="비밀번호">
+                <input type="password" class="form-control" placeholder="비밀번호" v-model="credentials.password" required>
               </div>
               <div>
                 <input type="submit" value="로그인" id="btn2">
@@ -49,8 +49,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'LoginView'
+	name: 'LoginView',
+	data() {
+		return {
+			credentials: {
+				username: '',
+				password: '',
+			}
+		}
+	},
+	methods: {
+		...mapActions(['login'])
+	}
 }
 </script>
 

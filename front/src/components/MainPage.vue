@@ -21,8 +21,8 @@
           <!-- 프로필사진이없으면 기본 -->
           <!-- current user name 정보 필요 클릭시 마이페이지 이동 -->
           <div id="profile-img-wrap">
-            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" id="profile-img">
-            <span id="current-user-name">userID</span>
+            <router-link :to="{ name: 'profile', params:{ username:`${currentUser.username}`} }" id="username"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" id="profile-img"></router-link>
+            <router-link :to="{ name: 'profile', params:{ username:`${currentUser.username}`} }" id="username">{{ currentUser.username }}</router-link>
           </div>
         </div>
 
@@ -42,8 +42,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'MainPage'
+  name: 'MainPage',
+  computed: {
+    ...mapGetters(['currentUser'])
+  }
 }
 </script>
 
@@ -104,5 +109,12 @@ export default {
 #recommend-user-wrap {
   border: 1px solid black;
   height: 280px;
+}
+
+#username {
+  text-decoration: none;
+  color: black;
+  margin-left: 15px;
+  font-weight: bold;
 }
 </style>

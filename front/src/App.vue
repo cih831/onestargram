@@ -2,7 +2,7 @@
   <div>
     <nav v-if="isLoggedIn" class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
       <ul>
-        <a class="navbar-brand" href="#">Navbar</a>
+        <router-link :to="{ name: 'onestargram'}"><img src="@/assets/2.png" width="130" height="30" class="mt-2" alt=""></router-link>
       </ul>
 
       <ul>
@@ -13,13 +13,13 @@
       </ul>
       <ul>
         <li>
-          <router-link :to="{ name: 'onestargram'}"><img v-if="!isHome" src="@/assets/home1.png" alt="" id="home1"></router-link>
+          <router-link :to="{ name: 'onestargram'}"><img src="@/assets/home1.png" alt="" id="home1"></router-link>
         </li>
         <li>
           <div class="dropdown">
             <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" id="home1"></button>
             <div class="dropdown-content">
-              <a><router-link :to="{ name: 'profile' }">프로필</router-link></a>
+              <a><router-link :to="{ name: 'profile', params:{ username:`${currentUser.username}`} }">프로필</router-link></a>
               <a><router-link :to="{ name: 'logout'}">로그아웃</router-link></a>
             </div>
           </div>
@@ -38,10 +38,10 @@ export default {
   computed: {
     ...mapGetters(['isLoggedIn', 'currentUser']),
   },
-  mathods: {
+  methods: {
     ...mapActions(['fetchCurrentUser'])
   },
-  created() {
+  created () {
     this.fetchCurrentUser()
   }
 }
