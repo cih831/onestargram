@@ -115,5 +115,16 @@ export default {
           commit('SET_PROFILE', res.data)
         })
     },
+
+    followUser({ commit, getters }, username)  {
+      console.log(username)
+      axios({
+        url: drf.accounts.follow(username),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+      .then(res => commit('SET_PROFILE', res.data))
+        .catch(err => console.log(err.response))
+    }
   }
 }

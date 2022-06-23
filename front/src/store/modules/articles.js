@@ -3,7 +3,6 @@ import drf from '@/api/drf'
 import router from '@/router'
 
 import _ from 'lodash'
-import accounts from './accounts'
 
 export default {
   state: {
@@ -64,7 +63,7 @@ export default {
           commit('SET_ARTICLE', res.data)
           router.push({
             name: 'profile',
-            params: { username: accounts.getters.currentUser.username }
+            params: { username: getters.currentUser.username }
           })
         })
     },
@@ -80,7 +79,7 @@ export default {
           commit('SET_ARTICLE', res.data)
           router.push({
             name: 'profile',
-            params: { username: accounts.getters.currentUser.username }
+            params: { username: getters.currentUser.username }
           })
         })
     },
@@ -96,7 +95,7 @@ export default {
             commit('SET_ARTICLE', {})
             router.push({
               name: 'profile',
-              params: { username: accounts.getters.currentUser.username }
+              params: { username: getters.currentUser.username }
             })
           })
           .catch(err => console.error(err.response))
