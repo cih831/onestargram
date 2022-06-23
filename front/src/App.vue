@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapGetters(['isLoggedIn', 'currentUser']),
   },
-  mathods: {
+  methods: {
     ...mapActions(['fetchCurrentUser'])
   },
   created() {
