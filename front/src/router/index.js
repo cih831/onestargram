@@ -7,6 +7,8 @@ import OneStarGramView from '@/views/OneStarGramView.vue'
 import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import SignupView from '@/views/SignupView.vue'
+import NotFound404 from '@/views/NotFound404.vue'
+import ProfileView from '@/views/ProfileView.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,20 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView
+  },
+  {
+    path: '/profile/:username',
+    name: 'profile',
+    component: ProfileView
+  },
+  {
+    path: '/404',
+    name: 'NotFound404',
+    component: NotFound404
+  },
+  {
+    path: '*',
+    redirect: '/404'
   },
 ]
 
