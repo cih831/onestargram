@@ -1,35 +1,23 @@
 <template>
   <div v-if="isLoggedIn" >
-    <nav class="navbar navbar-expand-lg navbar-light bg-white mb-5 sticky-top">
-      <div class="d-flex flex-row justify-content-between">
-        <!-- 이미지 -->
-        <div>
-          <a class="navbar-brand" href="#">
-            <img src="@/assets/2.png" alt="" width="120" height="27" class="mx-5">
-          </a>
-        </div>
-        <!-- 검색바 -->
-        <div>
-          <form class="d-flex d-none d-sm-block">
-            <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
-          </form>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+      <li>
+        <a class="navbar-brand" href="#">Navbar</a>
+      </li>
 
-        <!-- 아이콘 -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <li>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </li>
+      <li>
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+      </li>
+
+
     </nav>
     <router-view/>
   </div>
@@ -46,6 +34,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+
+#search-var {
+  width: 300px;
+  background-color: rgb(228, 228, 228);
+}
 </style>

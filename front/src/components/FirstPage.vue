@@ -96,7 +96,6 @@ export default {
   background-color: white;
   width: 350px;
   text-align: center;
-
 }
 
 #bottom-box {
