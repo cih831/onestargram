@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div v-if="isLoggedIn" >
     <nav class="navbar navbar-expand-lg navbar-light bg-white mb-5 sticky-top">
       <div class="d-flex flex-row justify-content-between">
         <!-- 이미지 -->
@@ -34,6 +34,17 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'App',
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  }
+}
+</script>
 
 <style>
 

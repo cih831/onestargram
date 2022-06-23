@@ -19,16 +19,13 @@
           <div id="signup-wrap">
             <form @submit.prevent="signup(credentials)">
               <div id="input-div">
-                <input type="text" class="form-control" placeholder="휴대폰 번호 또는 이메일 주소" v-model="credentials.userInfo">
+                <input type="text" class="form-control" placeholder="아이디" v-model="credentials.username">
               </div>
               <div id="input-div">
-                <input type="text" class="form-control" placeholder="성명" v-model="credentials.username">
+                <input type="password" class="form-control" placeholder="비밀번호" v-model="credentials.password1">
               </div>
               <div id="input-div">
-                <input type="text" class="form-control" placeholder="사용자 이름" v-model="credentials.nickname">
-              </div>
-              <div id="input-div">
-                <input type="password" class="form-control" placeholder="비밀번호" v-model="credentials.password">
+                <input type="password" class="form-control" placeholder="비밀번호확인" v-model="credentials.password2">
               </div>
               <div id="text4-wrap">
                 <span id="text4">서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram에 업로드했을 수도 있습니다.</span>
@@ -65,10 +62,9 @@ export default {
   data() {
     return {
       credentials : {
-        userInfo: '',
         username: '',
-        nickname: '',
-        password: '',
+        password1: '',
+        password2: '',
       }
     }
   },
