@@ -13,11 +13,16 @@
       </ul>
       <ul>
         <li>
-          <router-link :to="{ name: 'onestargram'}"><img v-if="isHome" src="@/assets/home2.png" alt="" id="home1"></router-link>
-          <router-link :to="{ name: 'onestargram'}"><img v-if="!isHome" src="@/assets/home2.png" alt="" id="home1"></router-link>
+          <router-link :to="{ name: 'onestargram'}"><img v-if="!isHome" src="@/assets/home1.png" alt="" id="home1"></router-link>
         </li>
         <li>
-          <a class="nav-link active" aria-current="page" href="#">Login</a>
+          <div class="dropdown">
+            <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" id="home1"></button>
+            <div class="dropdown-content">
+              <a><router-link :to="{ name: 'profile' }">프로필</router-link></a>
+              <a><router-link :to="{ name: 'logout'}">로그아웃</router-link></a>
+            </div>
+          </div>
         </li>
       </ul>
     </nav>
@@ -26,26 +31,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'App',
   computed: {
-    ...mapGetters(['isLoggedIn']),
+    ...mapGetters(['isLoggedIn', 'currentUser']),
   },
-  data() {
-    return {
-      isHome: false,
-    }
+  mathods: {
+    ...mapActions(['fetchCurrentUser'])
   },
   created() {
-    let now = window.location.href
-    console.log(now)
-    if (now === "http://localhost:8080/") {
-      this.isHome = true
-    }
+    this.fetchCurrentUser()
   }
-
 }
 </script>
 
@@ -70,4 +68,38 @@ li {
   width: 24px;
   height: 24px;
 }
+
+.dropbtn {
+  border: none;
+  background-color: rgb(248, 248, 248);
+
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 150px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-content a:hover {background-color: #ddd;}
 </style>
