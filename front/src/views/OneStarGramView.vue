@@ -11,10 +11,10 @@
             <div id="login-form">
               <form @submit.prevent="login(credentials)" class="login-id">
                 <div class="mb-2">
-                  <input type="text" placeholder="전화번호 사용자 이름 또는 이메일" class="form-control" required>
+                  <input type="text" placeholder="전화번호 사용자 이름 또는 이메일" class="form-control" v-model="credentials.username" required>
                 </div>
                 <div class="mb-2">
-                  <input type="password" placeholder="비밀번호" class="form-control" required>
+                  <input type="password" placeholder="비밀번호" class="form-control" v-model="credentials.password" required>
                 </div>
                 <div>
                   <input type="submit" value="로그인" class="btn btn-primary btn-sm">
@@ -30,7 +30,7 @@
             </div>     
           </div>
           <div id="bottom-box">
-            <p id="text3">계정이 없으신가요?</p><p id="text3-1"> 가입하기</p>
+            <p id="text3">계정이 없으신가요?</p><router-link :to="{ name: 'signup'}" id="text3-1"><p id="text3-1">가입하기</p></router-link>
           </div>
           <div id="bottom-box2">
             앱을 다운로드하세요.
@@ -50,10 +50,21 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 
 export default {
   name: 'OneStarGramView',
+  data() {
+    return {
+      credentials : {
+        username: '',
+        password: '',
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['login'])
+  }
 }
 </script>
 
@@ -107,6 +118,7 @@ export default {
   margin: 0;
   color: rgb(0, 153, 255);
   font-size: 13px;
+  text-decoration: none;
 }
 #image2 {
   width: 175px;
@@ -147,6 +159,7 @@ export default {
 .form-control {
   width: 268px;
   height: 38px;
+  background-color: #fafafa;
 }
 
 #login-form {
