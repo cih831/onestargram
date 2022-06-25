@@ -10,11 +10,12 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <button></button>
+              <h1>사진과 동영상을 여기에 끌어다 놓으세요</h1>
+              <input id="upload" type="file" accept="image/*" @change="onInputImage" ref="image" class="upload-box" required>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-              <button type="button" class="btn btn-primary">업로드</button>
+              
             </div>
           </div>
         </div>
@@ -66,7 +67,26 @@ export default {
     ...mapGetters(['isLoggedIn', 'currentUser']),
   },
   methods: {
-    ...mapActions(['fetchCurrentUser', 'logout'])
+    ...mapActions(['fetchCurrentUser', 'logout']),
+		encodeBase64ImageFile (image) {
+      return new Promise((resolve, reject) => {
+        let reader = new FileReader()
+        reader.readAsDataURL(image[0])
+        reader.onload = (event) => {
+          resolve(event.target.result)
+        }
+        reader.onerror = (error) => {
+          reject(error)
+        }
+      })
+    },
+
+    onInputImage() {
+      this.encodeBase64ImageFile(this.$refs.image.files)
+        .then(data => {
+          this.cardData.img = data
+        })
+    },
   },
   created () {
     this.fetchCurrentUser()
