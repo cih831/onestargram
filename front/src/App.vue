@@ -1,8 +1,31 @@
 <template>
   <div>
+    <!-- 모달창 -->
+    <form>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">새 게시물 만들기</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <button></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary">업로드</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
     <nav v-if="isLoggedIn" class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
       <ul>
-        <router-link :to="{ name: 'onestargram'}"><img src="@/assets/2.png" width="130" height="30" class="mt-2" alt=""></router-link>
+        <router-link :to="{ name: 'onestargram'}"><img src="@/assets/2.png" width="120" height="30" class="mt-2" alt=""></router-link>
       </ul>
 
       <ul>
@@ -16,11 +39,15 @@
           <router-link :to="{ name: 'onestargram'}"><img src="@/assets/home1.png" alt="" id="home1"></router-link>
         </li>
         <li>
+          <!-- 모달창 -->
+          <img src="@/assets/8.png" alt="" id="home2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        </li>
+        <li>
           <div class="dropdown">
             <button class="dropbtn"><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" id="home1"></button>
             <div class="dropdown-content">
               <a><router-link :to="{ name: 'profile', params:{ username:`${currentUser.username}`} }">프로필</router-link></a>
-              <a><router-link :to="{ name: 'logout'}">로그아웃</router-link></a>
+              <a id="dropdown-table" @click="logout()">로그아웃</a>
             </div>
           </div>
         </li>
@@ -39,7 +66,7 @@ export default {
     ...mapGetters(['isLoggedIn', 'currentUser']),
   },
   methods: {
-    ...mapActions(['fetchCurrentUser'])
+    ...mapActions(['fetchCurrentUser', 'logout'])
   },
   created () {
     this.fetchCurrentUser()
@@ -65,8 +92,20 @@ li {
 
 #home1 {
   margin-top: 10px;
+  margin-left: 15px;
   width: 24px;
   height: 24px;
+}
+
+#home2 {
+  margin-top: 10px;
+  margin-left: 15px;
+  width: 24px;
+  height: 24px;
+}
+
+#home2:hover {
+  cursor: pointer;
 }
 
 .dropbtn {
@@ -78,7 +117,6 @@ li {
 .dropdown {
   position: relative;
   display: inline-block;
-  margin-left: 20px;
   margin-right: 150px;
 }
 
@@ -102,4 +140,9 @@ li {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown-content a:hover {background-color: #ddd;}
+
+#dropdown-table {
+  padding: 10px;
+  padding-left: 20px;
+}
 </style>
